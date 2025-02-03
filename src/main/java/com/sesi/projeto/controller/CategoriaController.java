@@ -11,33 +11,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sesi.projeto.dto.ProdutoDto;
-import com.sesi.projeto.entities.Produto;
-import com.sesi.projeto.repositories.ProdutoRepositories;
+import com.sesi.projeto.dto.CategoriaDto;
+import com.sesi.projeto.entities.Categoria;
+import com.sesi.projeto.repositories.CategoriaRepositories;
 
 @RestController
-@RequestMapping(value ="produto")
-public class ProdutoController {
+@RequestMapping("categoria")
 
+public class CategoriaController {
+	
 	
 	@Autowired
-	ProdutoRepositories repo;
+	CategoriaRepositories repo;
 	
 	@GetMapping
-	public ResponseEntity<List<Produto>> mostraTodos(){
-		List<Produto> prod = repo.findAll();
-		return ResponseEntity.ok(null);
+	public ResponseEntity<List<Categoria>> mostrarTodos() {
+		List<Categoria> prod = repo.findAll();
+		return ResponseEntity.ok(prod);
 	}
 	
-	@GetMapping(value = "/{id{")
-	public ResponseEntity<?> mostrarPorId(@PathVariable Long id){
-		Produto prod = repo.getById(id);
+	@GetMapping(value = "/categoria/{id}")
+	public ResponseEntity<?> mostrarPorId(@PathVariable Long id) {
+		Categoria prod = repo.getById(id);
 		return ResponseEntity.ok(prod);
 	}
 	
 	@PostMapping
-	public ResponseEntity<Produto> criar(@RequestBody ProdutoDto dto){
-		Produto prod = new Produto(dto);
+    public ResponseEntity<Categoria> criar(@RequestBody CategoriaDto dto) {
+		Categoria prod = new Categoria(dto);
 		return ResponseEntity.ok(prod);
-	}
+    }
+	 
 }
+
+
