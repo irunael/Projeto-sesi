@@ -29,7 +29,7 @@ public class ProdutoController {
 		return ResponseEntity.ok(null);
 	}
 	
-	@GetMapping(value = "/{id{")
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<?> mostrarPorId(@PathVariable Long id){
 		Produto prod = repo.getById(id);
 		return ResponseEntity.ok(prod);

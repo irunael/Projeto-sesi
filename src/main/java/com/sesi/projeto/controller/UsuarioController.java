@@ -1,4 +1,4 @@
-package com.sesi.projeto.controller;
+/*package com.sesi.projeto.controller;
 
 import java.util.List;
 
@@ -62,4 +62,4 @@ public class UsuarioController {
 		
 		return repo.save(usuario);
 	}
-}
+}*/

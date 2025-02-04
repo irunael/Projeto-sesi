@@ -1,4 +1,4 @@
-package com.sesi.projeto.controller;
+/*package com.sesi.projeto.controller;
 
 import java.util.List;
 
@@ -56,8 +56,8 @@ public class PedidoController {
             return ResponseEntity.notFound().build();
         }
         pedido.setMomento(pedidoAtualizado.getMomento());
-        pedido.setStatusDoPedido(pedidoAtualizado.getStatusDoPedido());
+        pedido.setstatus(pedidoAtualizado.getstatus());
         pedido = repo.save(pedido); 
         return ResponseEntity.ok(pedido);
     }
-}
+}*/

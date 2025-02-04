@@ -2,8 +2,9 @@ package com.sesi.projeto.dto;
 
 import java.time.Instant;
 
-import ch.qos.logback.core.status.Status;
+import com.sesi.projeto.entities.StatusDoPedido;
 
-public record PedidoDto(Instant momento, Status StatusDoPedido) {
+public record PedidoDto(Instant momento, StatusDoPedido status) {
+
 
 }

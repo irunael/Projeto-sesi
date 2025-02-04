@@ -1,4 +1,4 @@
-package com.sesi.projeto.controller;
+/*package com.sesi.projeto.controller;
 
 import java.util.List;
 
@@ -66,4 +66,4 @@ public class PagamentoController {
         repo.delete(pag);  
         return ResponseEntity.noContent().build();
     }
-}
+}*/

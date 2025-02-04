@@ -2,49 +2,53 @@ package com.sesi.projeto.entities;
 
 import com.sesi.projeto.dto.ItemDoPedidoDto;
 
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_item")
+@Table(name = "tb_pedido_item")
 
 public class ItemDoPedido {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	private String nome;
-	
-	
-	public ItemDoPedido(long id, String nome) {
-		this.id = id;
-		this.nome = nome;
-		
-	}
-	
-	public ItemDoPedido(ItemDoPedidoDto d) {
-		this.nome = d.nome();
+
+	@EmbeddedId
+
+	private ItemDoPedidoPK id = new ItemDoPedidoPK();
+
+	private Integer quantidade;
+
+	private double preco;
+
+	private ItemDoPedido() {
 	}
 
-	public long getId() {
-		return id;
+	public ItemDoPedido(Pedido pedido, Produto produto, Integer quantidade, Double preco) {
+		id.setPedido(pedido);
+		id.setProduto(produto);
+		this.quantidade = quantidade;
+		this.preco = preco;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+
+		public ItemDoPedido(ItemDoPedidoDto dto) {
+		// TODO Auto-generated constructor stub
 	}
 
-	public String getNome() {
-		return nome;
+		public Pedido getPedido() {
+		return id.getPedido();
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setPedido(Pedido pedido) {
+		id.setPedido(pedido);
 	}
+	
+	public Produto getProduto() {
+		return id.getProduto();
+	}
+
+	public void setProduto(Produto produto) {
+		id.setProduto(produto);
+	}
+	
 
 }
-
-

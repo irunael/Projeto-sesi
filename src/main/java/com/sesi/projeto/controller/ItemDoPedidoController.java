@@ -1,4 +1,4 @@
-package com.sesi.projeto.controller;
+/*package com.sesi.projeto.controller;
 
 import java.util.List;
 
@@ -41,5 +41,5 @@ public class ItemDoPedidoController {
 		return ResponseEntity.ok(prod);
     }
 	 
-}
+}*/
 

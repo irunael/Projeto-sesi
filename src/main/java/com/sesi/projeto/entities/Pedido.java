@@ -1,14 +1,21 @@
 package com.sesi.projeto.entities;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import com.sesi.projeto.dto.PedidoDto;
 
-import ch.qos.logback.core.status.Status;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,19 +27,37 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Instant momento;
-	private Status StatusDoPedido;
+	private StatusDoPedido status;
+	
+	@OneToMany(mappedBy = "id.pedido")
+	private Set< ItemDoPedido> items = new HashSet<>();
+	
+	public Set<ItemDoPedido> getItems(){
+		return items;
+	}
+	
+	public List<Produto> getProduto(){
+		return items.stream().map(x->x.getProduto()).toList();
+	}
+	
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
+	private Usuario cliente;
+	
+	@OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
+	private Pagamento pagamento;
 	
 	
 	public Pedido(PedidoDto dto) {
 		this.momento =dto.momento();
-		this.StatusDoPedido =dto.StatusDoPedido();
+		this.status =dto.status();
 	}
 	
-	public Pedido(Long id, Instant momento, Status statusDoPedido) {
+	public Pedido(Long id, Instant momento, StatusDoPedido status) {
 		super();
 		this.id = id;
 		this.momento = momento;
-		StatusDoPedido = statusDoPedido;
+		status = status;
 	}
 
 	public Long getId() {
@@ -47,11 +72,11 @@ public class Pedido {
 	public void setMomento(Instant momento) {
 		this.momento = momento;
 	}
-	public Status getStatusDoPedido() {
-		return StatusDoPedido;
+	public StatusDoPedido getstatus() {
+		return status;
 	}
-	public void setStatusDoPedido(Status statusDoPedido) {
-		StatusDoPedido = statusDoPedido;
+	public void setstatus(StatusDoPedido status) {
+		status = status;
 	}
 }
 
